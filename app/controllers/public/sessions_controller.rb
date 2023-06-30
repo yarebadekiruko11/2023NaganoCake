@@ -43,14 +43,14 @@ class Public::SessionsController < Devise::SessionsController
   # 入力されたメールからアカウントを１件取得
   @customer = Customer.find_by(email: params[:customer][:email])
   #アカウント取得できず。終了
-   if @customer
+   return if !@customer
 
   #取得アカウントのパスワードと入力されたパスワードが一致しているかどうか
     if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == false)
     #処理分岐
     redirect_to new_customer_registration
     end
-   end
+ end
 
 
 
@@ -60,5 +60,5 @@ class Public::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
- end
+
 end
