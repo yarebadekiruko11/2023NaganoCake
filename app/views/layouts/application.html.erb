@@ -14,13 +14,13 @@
 
   <!--ログイン後のヘッダー-->
     <!--<if customer_siged_in?>-->
-    　<!--<li class="nav-list-item">-->
+     <!--<li class="nav-list-item">-->
       <%#= link_to "マイページ", public_homes_path %>
       <!--</li>-->
-    　<!--<li class="nav-list-item">-->
+     <!--<li class="nav-list-item">-->
       <%#= link_to "商品一覧", public_items_path %>
       <!--</li>-->
-   　  <!--<li class="nav-list-item">-->
+     <!--<li class="nav-list-item">-->
       <%#= link_to "カート", new_customer_registration_path %>
       <!--</li>-->
       <!--<li class="nav-list-item">-->
@@ -30,7 +30,7 @@
   <!--ログイン前のヘッダー  -->
     <%# else %>
       <li class="nav-list-item">
-       <%= link_to "About", public_homes_about_path %>
+       <%= link_to "About", homes_about_path %>
       </li>
       <li class="nav-list-item">
        <%= link_to "商品一覧", public_items_path %>
@@ -53,4 +53,14 @@
   <body>
     <%= yield %>
   </body>
+
+  <footer>
+     <li class="nav-list-item">
+       <%= link_to "管理者用", admin_session_path %>
+     </li>
+
+  </footer>
+
+
+
 </html>
