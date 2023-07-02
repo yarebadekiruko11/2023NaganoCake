@@ -5,17 +5,31 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/bb5a63535a.js" crossorigin="anonymous"></script>
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <header>
+  <body class="d-flex flex-column vh-100">
+   <header class="shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <a class="navbar-brand p-3" href="/">Logo</a>
 
-  <!--ログイン後のヘッダー-->
-    <!--<if customer_siged_in?>-->
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+              <!--ログイン後のヘッダー-->
+      <% if customer_signed_in? %>
      <!--<li class="nav-list-item">-->
-      <%#= link_to "マイページ", public_homes_path %>
+      <%#= link_to "マイページ", public_customers_show_path %>
       <!--</li>-->
      <!--<li class="nav-list-item">-->
       <%#= link_to "商品一覧", public_items_path %>
@@ -23,24 +37,50 @@
      <!--<li class="nav-list-item">-->
       <%#= link_to "カート", new_customer_registration_path %>
       <!--</li>-->
-      <!--<li class="nav-list-item">-->
-      <%#= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-      <!--</li>-->
+      <li class="nav-list-item">
+       <button type="button" class="btn btn-outline-secondary">
+        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+       </button>
+      </li>
 
   <!--ログイン前のヘッダー  -->
-    <%# else %>
-      <li class="nav-list-item">
-       <%= link_to "About", homes_about_path %>
-      </li>
-      <li class="nav-list-item">
-       <%= link_to "商品一覧", public_items_path %>
-      </li>
-      <li class="nav-list-item">
-       <%= link_to "新規登録", new_customer_registration_path %>
-      </li>
-      <li class="nav-list-item">
-       <%= link_to "ログイン", customer_session_path %>
-      </li>
+      <% else %>
+       <li>
+        <button type="button" class="btn btn-outline-secondary">
+         <%= link_to "About", homes_about_path %>
+        </button>
+       </li>
+       <li class="nav-list-item">
+         <button type="button" class="btn btn-outline-secondary">
+          <%= link_to "商品一覧", public_items_path %>
+         </button>
+       </li>
+       <li class="nav-list-item">
+         <button type="button" class="btn btn-outline-secondary">
+          <%= link_to "新規登録", new_customer_registration_path %>
+        </button>
+       </li>
+       <li class="nav-list-item">
+         <button type="button" class="btn btn-outline-secondary">
+          <%= link_to "ログイン", customer_session_path %>
+        </button>
+       </li>
+      <% end %>
+
+
+
+
+
+          </ul>
+
+
+        </div>
+
+
+
+
+    </nav>
+
 
   </header>
 
@@ -54,10 +94,17 @@
     <%= yield %>
   </body>
 
-  <footer>
-     <li class="nav-list-item">
-       <%= link_to "管理者用", admin_session_path %>
-     </li>
+  <footer class="bg-dark text white pt-5 pb-4">
+    <div class="container">
+      <div class="row no-gutters">
+        <div class="col py-3 px-lg-5 border bg-dark">
+          <%= link_to "管理者用", admin_session_path %>
+
+        </div>
+
+      </div>
+    </div>
+
 
   </footer>
 
