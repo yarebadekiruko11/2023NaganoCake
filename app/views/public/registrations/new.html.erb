@@ -9,29 +9,39 @@
 
 
   <div class="row justify-content-start mt-3">
-   <div class="col-3 ml-4">
+   <div class="col-2 ml-4">
     <p>名前</p>
    </div>
-   <div class="col-3">
-    <%= f.label "（姓）" %>
-    <%= f.text_field :last_name %>
+   <div class="col-1">
+    <%= f.label "(姓)" %>
    </div>
-   <div class="col-3">
-    <%= f.label "（名）" %>
+    <div class="col-3">
+    <%= f.text_field :last_name %>
+    </div>
+
+   <div class="col-1">
+    <%= f.label "(名)" %>
+    </div>
+    <div class="col-3">
     <%= f.text_field :first_name %>
    </div>
   </div>
 
   <div class="row justify-content-start mt-3">
-   <div class="col-3 ml-4">
+   <div class="col-2 ml-4">
     <p>フリガナ</p>
    </div>
-   <div class="col-3">
+   <div class="col-1">
     <%= f.label "(セイ)" %>
-    <%= f.text_field :last_name_kana %>
    </div>
    <div class="col-3">
+    <%= f.text_field :last_name_kana %>
+   </div>
+
+   <div class="col-1">
     <%= f.label "(メイ)" %>
+   </div>
+   <div class="col-3">
     <%= f.text_field :first_name_kana %>
    </div>
   </div>
@@ -60,7 +70,7 @@
     <p>住所</p>
    </div>
    <div class="col-6">
-    <%= f.text_area :address, size: "50x1" %>
+    <%= f.text_area :address, size: "65x1" %>
    </div>
   </div>
 
@@ -76,12 +86,13 @@
 <!--パスワード  -->
   <div class="row justify-content-start mt-3">
    <div class="col-3 ml-4">
-    <p>パスワード（６文字以上）</p>
-   </div>
-   <div class="col-6">
+    <p>パスワード
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    (<%= @minimum_password_length %> 文字以上)
     <% end %>
+    </p>
+    </div>
+    <div class="col-6">
     <%= f.password_field :password, autocomplete: "new-password" %>
    </div>
   </div>
@@ -97,7 +108,7 @@
 
   <div class="row justify-content-start mt-3">
    <div class="col-3 ml-4"></div>
-   <div class="col-5 ml-4">
+   <div class="d-grid gap-2 col-6">
     <%= f.submit "新規登録", class: 'btn btn-success' %>
 
    </div>
