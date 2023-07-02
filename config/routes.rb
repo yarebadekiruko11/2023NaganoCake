@@ -15,26 +15,47 @@ Rails.application.routes.draw do
 
   # トップ画面
   root to: "public/homes#top"
-
+  # アバウトページ
   scope module: :public do
     get 'homes/about'
   end
+  
+  # 会員用
+  # item
+  namespace :public do
+    resources :items, only: [:index, :show]
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   namespace :admin do
     get 'homes/top'
   end
 
-
-
-
-
-
-
-
-
-
-  namespace :public do
+# 会員注文用
+  scope module: :public do
     get 'orders/new'
     get 'orders/comfirm'
     get 'orders/complete'
@@ -42,13 +63,17 @@ Rails.application.routes.draw do
     get 'orders/index'
     get 'orders/show'
   end
-  namespace :public do
+  # カートアイテム
+  scope module: :public do
     get 'cart_items/index'
     get 'cart_items/update'
     get 'cart_items/destroy'
     get 'cart_items/destroy_all'
     get 'cart_items/create'
   end
+  
+  
+  
   namespace :admin do
     get 'order_details/update'
   end
@@ -65,8 +90,7 @@ Rails.application.routes.draw do
     get 'customers/unsubscribe'
     get 'customers/withdraw'
   end
-  namespace :public do
-    resources :items, only: [:index, :show]
+
 
 
   end
