@@ -26,22 +26,46 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
           <ul class="navbar-nav ml-auto">
-              <!--ログイン後のヘッダー-->
+
+    <!--会員ログイン後のヘッダー-->
       <% if customer_signed_in? %>
-     <!--<li class="nav-list-item">-->
-      <%#= link_to "マイページ", public_customers_show_path %>
-      <!--</li>-->
-     <!--<li class="nav-list-item">-->
-      <%#= link_to "商品一覧", public_items_path %>
-      <!--</li>-->
-     <!--<li class="nav-list-item">-->
-      <%#= link_to "カート", new_customer_registration_path %>
-      <!--</li>-->
-      <li class="nav-list-item">
-       <button type="button" class="btn btn-outline-secondary">
-        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-       </button>
-      </li>
+        <li class="nav-list-item">
+         <%= link_to "マイページ", customers_show_path %>
+        </li>
+        <li class="nav-list-item">
+          <%= link_to "商品一覧", items_path %>
+        </li>
+        <li class="nav-list-item">
+          <%= link_to "カート", cart_items_index_path %>
+        </li>
+        <li class="nav-list-item">
+          <button type="button" class="btn btn-outline-secondary">
+           <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+          </button>
+        </li>
+
+        <!--管理者ログイン後-->
+        <% elsif admin_signed_in? %>
+       <li>
+        <button type="button" class="btn btn-outline-secondary">
+         <%= link_to "商品一覧", admin_items_path %>
+        </button>
+       </li>
+       <li class="nav-list-item">
+         <button type="button" class="btn btn-outline-secondary">
+          <%= link_to "会員一覧", admin_customers_index_path %>
+         </button>
+       </li>
+       <li class="nav-list-item">
+         <button type="button" class="btn btn-outline-secondary">
+          <%= link_to "注文履歴一覧", orders_index_path %>
+        </button>
+       </li>
+       <li class="nav-list-item">
+          <button type="button" class="btn btn-outline-secondary">
+           <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+          </button>
+        </li>
 
   <!--ログイン前のヘッダー  -->
       <% else %>
@@ -52,7 +76,7 @@
        </li>
        <li class="nav-list-item">
          <button type="button" class="btn btn-outline-secondary">
-          <%= link_to "商品一覧", public_items_path %>
+          <%= link_to "商品一覧", items_path %>
          </button>
        </li>
        <li class="nav-list-item">

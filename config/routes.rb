@@ -15,47 +15,31 @@ Rails.application.routes.draw do
 
   # トップ画面
   root to: "public/homes#top"
-  # アバウトページ
+
+# 会員用
   scope module: :public do
     get 'homes/about'
-  end
-  
-  # 会員用
-  # item
-  namespace :public do
+
+    # 商品画面
     resources :items, only: [:index, :show]
-  
-  
 
+    # 会員情報編集等
+    get 'customers/show'
+    get 'customers/edit'
+    get 'customers/update'
+    # 退会確認画面
+    get 'customers/unsubscribe'
+    # 退会処理
+    get 'customers/withdraw'
 
+    # カート
+    get 'cart_items/index'
+    get 'cart_items/update'
+    get 'cart_items/destroy'
+    get 'cart_items/destroy_all'
+    get 'cart_items/create'
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  namespace :admin do
-    get 'homes/top'
-  end
-
-# 会員注文用
-  scope module: :public do
+    # 注文関係
     get 'orders/new'
     get 'orders/comfirm'
     get 'orders/complete'
@@ -63,49 +47,23 @@ Rails.application.routes.draw do
     get 'orders/index'
     get 'orders/show'
   end
-  # カートアイテム
-  scope module: :public do
-    get 'cart_items/index'
-    get 'cart_items/update'
-    get 'cart_items/destroy'
-    get 'cart_items/destroy_all'
-    get 'cart_items/create'
-  end
-  
-  
-  
+
+# 管理者用
   namespace :admin do
-    get 'order_details/update'
-  end
-  namespace :admin do
+
+    # トップ画面(order一覧)
+    get 'homes/top'
+
+    # 商品関係
+    resources :items, except: [:destroy]
+
+    # 会員情報
     get 'customers/index'
     get 'customers/show'
     get 'customers/edit'
     get 'customers/update'
+
+    # get 'order_details/update'
   end
-  namespace :public do
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
-    get 'customers/unsubscribe'
-    get 'customers/withdraw'
-  end
-
-
-
-  end
-  namespace :admin do
-    resources :items, except: [:destroy]
-
-    # get 'items/index'
-    # get 'items/new'
-    # get 'items/create'
-    # get 'items/show'
-    # get 'items/edit'
-    # get 'items/update'
-  end
-
-
-
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
