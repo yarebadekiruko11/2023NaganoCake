@@ -14,12 +14,11 @@
   </head>
 
   <body class="d-flex flex-column vh-100">
+
    <header class="shadow-sm">
     <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container">
         <a class="navbar-brand p-3" href="/">Logo</a>
-
-
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
                       aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -28,99 +27,93 @@
           <ul class="navbar-nav ml-auto">
 
     <!--会員ログイン後のヘッダー-->
-      <% if customer_signed_in? %>
-        <li class="nav-list-item">
-         <%= link_to "マイページ", customers_show_path %>
-        </li>
-        <li class="nav-list-item">
-          <%= link_to "商品一覧", items_path %>
-        </li>
-        <li class="nav-list-item">
-          <%= link_to "カート", cart_items_index_path %>
-        </li>
-        <li class="nav-list-item">
-          <button type="button" class="btn btn-outline-secondary">
-           <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-          </button>
-        </li>
+            <% if customer_signed_in? %>
+
+            <div>ようこそ、<%= current_customer.last_name %>さん！</div>
+
+
+           <li>
+             <button type="button" class="btn btn-outline-secondary mr-2">
+              <%= link_to "マイページ", customers_show_path %>
+             </button>
+           </li>
+           <li>
+             <button type="button" class="btn btn-outline-secondary mr-2">
+              <%= link_to "商品一覧", items_path %>
+             </button>
+           </li>
+           <li>
+             <button type="button" class="btn btn-outline-secondary mr-2">
+              <%= link_to "カート", cart_items_index_path %>
+             </button>
+           </li>
+           <li class="nav-list-item">
+            <button type="button" class="btn btn-outline-secondary">
+             <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+            </button>
+           </li>
+
 
         <!--管理者ログイン後-->
-        <% elsif admin_signed_in? %>
-       <li>
-        <button type="button" class="btn btn-outline-secondary">
-         <%= link_to "商品一覧", admin_items_path %>
-        </button>
-       </li>
-       <li class="nav-list-item">
-         <button type="button" class="btn btn-outline-secondary">
-          <%= link_to "会員一覧", admin_customers_index_path %>
-         </button>
-       </li>
-       <li class="nav-list-item">
-         <button type="button" class="btn btn-outline-secondary">
-          <%= link_to "注文履歴一覧", orders_index_path %>
-        </button>
-       </li>
-       <li class="nav-list-item">
-          <button type="button" class="btn btn-outline-secondary">
-           <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-          </button>
-        </li>
+           <% elsif admin_signed_in? %>
+           <li>
+            <button type="button" class="btn btn-outline-secondary mr-2">
+             <%= link_to "商品一覧", admin_items_path %>
+            </button>
+           </li>
+           <li class="nav-list-item">
+           <button type="button" class="btn btn-outline-secondary mr-2">
+            <%= link_to "会員一覧", admin_customers_index_path %>
+           </button>
+           </li>
+           <li class="nav-list-item">
+           <button type="button" class="btn btn-outline-secondary mr-2">
+            <%= link_to "注文履歴一覧", orders_index_path %>
+           </button>
+           </li>
+           <li class="nav-list-item">
+            <button type="button" class="btn btn-outline-secondary">
+             <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+            </button>
+           </li>
 
   <!--ログイン前のヘッダー  -->
-      <% else %>
-       <li>
-        <button type="button" class="btn btn-outline-secondary">
-         <%= link_to "About", homes_about_path %>
-        </button>
-       </li>
-       <li class="nav-list-item">
-         <button type="button" class="btn btn-outline-secondary">
-          <%= link_to "商品一覧", items_path %>
-         </button>
-       </li>
-       <li class="nav-list-item">
-         <button type="button" class="btn btn-outline-secondary">
-          <%= link_to "新規登録", new_customer_registration_path %>
-        </button>
-       </li>
-       <li class="nav-list-item">
-         <button type="button" class="btn btn-outline-secondary">
-          <%= link_to "ログイン", customer_session_path %>
-        </button>
-       </li>
-      <% end %>
-
-
-
-
-
+           <% else %>
+           <li>
+             <button type="button" class="btn btn-outline-secondary mr-2">
+              <%= link_to "About", homes_about_path %>
+             </button>
+           </li>
+           <li class="nav-list-item">
+             <button type="button" class="btn btn-outline-secondary mr-2">
+              <%= link_to "商品一覧", items_path %>
+             </button>
+           </li>
+           <li class="nav-list-item">
+             <button type="button" class="btn btn-outline-secondary mr-2">
+              <%= link_to "新規登録", new_customer_registration_path %>
+             </button>
+           </li>
+           <li class="nav-list-item">
+             <button type="button" class="btn btn-outline-secondary">
+              <%= link_to "ログイン", customer_session_path %>
+             </button>
+           </li>
+            <% end %>
           </ul>
-
-
         </div>
+      </div>
+     </nav>
+   </header>
 
-
-
-
-    </nav>
-
-
-  </header>
-
-
-
-
-
-
-
-  <body>
-
+   <div class="container">
 
     <%= yield %>
-  </body>
 
-  <footer class="bg-light text white py-3 pr-4">
+
+   </div>
+
+  <footer class="fixed-bottom bg-light text white py-3 pr-4">
 
       <div class="row justify-content-end">
         <div class="col-2">
@@ -134,6 +127,6 @@
 
   </footer>
 
-
+</body>
 
 </html>

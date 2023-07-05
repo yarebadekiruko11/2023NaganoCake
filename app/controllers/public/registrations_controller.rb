@@ -5,7 +5,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
 before_action :configure_permitted_parameters, if: :devise_controller?
 
  def after_sign_in_path_for(resource)
-    current_customer_show_path
+    root_path
  end
 
 
