@@ -1,2 +1,87 @@
-<h1>Public::Customers#edit</h1>
-<p>Find me in app/views/public/customers/edit.html.erb</p>
+
+
+<%= form_with model: @customer(current_customer, url: customer__path do |f| %>
+
+
+  <div class="row justify-content-start mt-3">
+   <div class="col-3 ml-4">
+    <p>氏名</p>
+   </div>
+   <div class="col-1"></div>
+   <div class="col-3">
+    <%= f.text_field :last_name %>
+   </div>
+
+   <div class="col-1"></div>
+   <div class="col-3">
+    <%= f.text_field :first_name %>
+   </div>
+  </div>
+
+  <div class="row justify-content-start mt-3">
+   <div class="col-3 ml-4">
+    <p>フリガナ</p>
+   </div>
+   <div class="col-1"></div>
+   <div class="col-3">
+    <%= f.text_field :last_name_kana %>
+   </div>
+
+   <div class="col-1"></div>
+   <div class="col-3">
+    <%= f.text_field :first_name_kana %>
+   </div>
+  </div>
+
+  <div class="row justify-content-start mt-3">
+    <div class="col-3 ml-4">
+     <p>メールアドレス</p>
+    </div>
+    <div class="col-6">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+  </div>
+
+
+  <div class="row justify-content-start mt-3">
+   <div class="col-3 ml-4">
+    <p>郵便番号（ハイフンなし）</p>
+   </div>
+   <div class="col-6">
+    <%= f.text_field :postal_code %>
+   </div>
+  </div>
+
+  <div class="row justify-content-start mt-3">
+   <div class="col-3 ml-4">
+    <p>住所</p>
+   </div>
+   <div class="col-6">
+    <%= f.text_area :address, size: "65x1" %>
+   </div>
+  </div>
+
+  <div class="row justify-content-start mt-3">
+   <div class="col-3 ml-4">
+    <p>電話番号</p>
+   </div>
+   <div class="col-6">
+    <%= f.text_field :telephone_number %>
+   </div>
+  </div>
+
+  <div class="row justify-content-start mt-3">
+   <div class="col-3 ml-4"></div>
+   <div class="d-grid gap-2 col-6">
+    <%= f.submit "編集", class: 'btn btn-success px-5' %>
+
+   </div>
+   <div class="col-3 ml-4"></div>
+   <div class="d-grid gap-2 col-6">
+    <%= f.submit "退会する", class: 'btn btn-danger px-5' %>
+
+   </div>
+
+
+  </div>
+    <% end %>

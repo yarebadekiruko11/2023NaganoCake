@@ -24,9 +24,9 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
 
     # 会員情報編集等
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
+    get 'my_page' => "customers#show"
+    get 'information/edit' => "customers#infomation#edit"
+    patch 'information/update' => "customers#infomation#update"
     # 退会確認画面
     get 'customers/unsubscribe'
     # 退会処理
@@ -44,7 +44,7 @@ Rails.application.routes.draw do
     get 'orders/comfirm'
     get 'orders/complete'
     get 'orders/create'
-    get 'orders/index'
+    get 'orders' => "orders#index"
     get 'orders/show'
   end
 
