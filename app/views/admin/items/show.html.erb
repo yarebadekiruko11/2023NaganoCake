@@ -1,2 +1,60 @@
-<h1>Admin::Items#show</h1>
-<p>Find me in app/views/admin/items/show.html.erb</p>
+  <div class="row">
+    <div class="col-auto mt-5" style="background-color: darkgray;">
+     <h5>商品詳細</h5>
+    </div>
+  </div>
+  <br>
+
+
+<div class="row justify-content-center">
+
+
+ <div class="col-5 me-2">
+  <%= image_tag @item.image, size: "300x200" %>
+ </div>
+ <div class="col-7">
+
+  <div class="row justify-content-center">
+   <div class="col-3 me-2">
+    <p>商品名</p>
+   </div>
+   <div class="col-6">
+    <%= @item.name %>
+   </div>
+  </div>
+
+  <div class="row justify-content-center">
+   <div class="col-3 me-2">
+    <p>商品説明</p>
+   </div>
+   <div class="col-6">
+    <%= @item.introduction %>
+   </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-3 me-2">
+     <p>税抜価格</p>
+    </div>
+    <div class="col-6">
+     <%= @item.price %>円
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-3 me-2">
+     <p>(税込価格)</p>
+    </div>
+    <div class="col-6">(
+     <%= (@item.price * 1.1).floor %>円)
+    </div>
+  </div>
+
+ </div>
+</div>
+  <br>
+
+<!--ジャンル、販売ステータスはチャレンジ-->
+<div class="row justify-content-center">
+  <%= link_to '編集する', edit_admin_item_path(@item.id), class: 'btn btn-success px-5'%>
+</div>
