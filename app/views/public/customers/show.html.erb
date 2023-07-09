@@ -1,3 +1,7 @@
+ <div>
+   <%= flash[:notice] %>
+ </div>
+
   <div class="row">
     <div class="col-auto mt-5" style="background-color: darkgray;">
      <h5>マイページ</h5>
@@ -5,25 +9,22 @@
   </div>
 
   <h3>登録情報</h3>
-  　<button type="button" class="btn btn-success px-5">
-     <%= link_to "編集する", edit_customer_registration_path %>
-    </button>
-
+  　 <%= link_to "編集する", customers_information_edit_path, class: "btn btn-success px-5" %>
 
   <table class="table table-bordered mt-3">
     <tbody>
       <tr>
        <th style="width:30%">氏名</th>
        <td>
-         <%= current_customer.first_name %>
          <%= current_customer.last_name %>
+         <%= current_customer.first_name %>
        </td>
       </tr>
       <tr>
        <th style="width:30%">カナ</th>
        <td>
-         <%= current_customer.first_name_kana %>
          <%= current_customer.last_name_kana %>
+         <%= current_customer.first_name_kana %>
        </td>
       </tr>
       <tr>
@@ -53,6 +54,6 @@
     </tbody>
   </table>
 
-　<button type="button" class="btn btn-primary px-5">
-    <%= link_to "一覧をみる", orders_path %>
-  </button>
+
+    <%= link_to "一覧をみる", orders_path, class: "btn btn-primary px-5" %>
+

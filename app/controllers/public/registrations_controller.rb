@@ -8,8 +8,8 @@ before_action :configure_permitted_parameters, if: :devise_controller?
     items_path
  end
 
- def after_account_update_path_for(resource)
-    current_customer_show_path
+ def after_update_path_for(resource)
+    my_page_path(current_customer)
  end
 
 protected

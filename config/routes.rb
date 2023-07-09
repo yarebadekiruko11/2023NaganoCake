@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+
  # 顧客用
   # url /customers/sign_in...
   devise_for :customers, skip: [:passwords], controllers: {
@@ -25,12 +26,12 @@ Rails.application.routes.draw do
 
     # 会員情報編集等
     get 'my_page' => "customers#show"
-    get 'information/edit' => "customers#infomation#edit"
-    patch 'information/update' => "customers#infomation#update"
+    get 'customers/information/edit' => "customers#edit"
+    patch 'customers/information' => "customers#update"
     # 退会確認画面
     get 'customers/unsubscribe'
     # 退会処理
-    get 'customers/withdraw'
+    patch 'customers/withdraw'
 
     # カート
     get 'cart_items/index'
@@ -62,6 +63,15 @@ Rails.application.routes.draw do
     get 'customers/show'
     get 'customers/edit'
     get 'customers/update'
+
+    # 注文関係
+    get 'orders/index'
+    get 'orders/show'
+
+
+
+
+
 
     # get 'order_details/update'
   end

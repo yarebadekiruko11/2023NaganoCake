@@ -1,13 +1,16 @@
+  <div class="row">
+    <div class="col-auto mt-5" style="background-color: darkgray;">
+     <h5>会員情報編集</h5>
+    </div>
+  </div>
 
-
-<%= form_with model: @customer(current_customer, url: customer__path do |f| %>
-
+<%= form_with model: @customer, url: customers_information_path do |f| %>
 
   <div class="row justify-content-start mt-3">
    <div class="col-3 ml-4">
     <p>氏名</p>
    </div>
-   <div class="col-1"></div>
+
    <div class="col-3">
     <%= f.text_field :last_name %>
    </div>
@@ -22,7 +25,7 @@
    <div class="col-3 ml-4">
     <p>フリガナ</p>
    </div>
-   <div class="col-1"></div>
+
    <div class="col-3">
     <%= f.text_field :last_name_kana %>
    </div>
@@ -72,16 +75,19 @@
 
   <div class="row justify-content-start mt-3">
    <div class="col-3 ml-4"></div>
-   <div class="d-grid gap-2 col-6">
-    <%= f.submit "編集", class: 'btn btn-success px-5' %>
+   <div class="d-grid gap-2 col-3">
+
+    <%= f.submit "編集内容を保存", class: "btn btn-info px-5" %>
+
+    <!--btn btn-success px-5-->
+<% end %>
 
    </div>
-   <div class="col-3 ml-4"></div>
-   <div class="d-grid gap-2 col-6">
-    <%= f.submit "退会する", class: 'btn btn-danger px-5' %>
+   <div class="col-1 ml-4"></div>
+   <div class="d-grid gap-2 col-3">
+
+     <%= link_to "退会する", customers_unsubscribe_path, class: "btn btn-danger px-5" %>
 
    </div>
-
 
   </div>
-    <% end %>

@@ -52,7 +52,10 @@ class Public::SessionsController < Devise::SessionsController
   #取得アカウントのパスワードと入力されたパスワードが一致しているかどうか
     if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == false)
     #処理分岐
+    flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
     redirect_to new_customer_registration
+    else
+    flash[:notice] = "項目を入力してください"
     end
  end
 
