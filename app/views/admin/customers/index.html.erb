@@ -21,10 +21,21 @@
       <th scope="row"><%= customer.id %></th>
       <td><%= link_to customer.last_name << customer.first_name, admin_customer_path(customer.id) %></td>
       <td><%= customer.email %></td>
-      <td><%= customer.is_deleted %></td>
+      <td>
+        <%= customer.is_deleted %>
+          <%#= f.label :is_deleted, "有効" %>
+        <%# else %>
+          <%#= f.label :is_deleted, "退会", {value: :true } %>
+        <%# end %>
+      </td>
     </tr>
      <% end %>
 
    </tbody>
   </table>
 
+<div class="row justify-content-md-center my-5">
+    <div class="col col-md-auto">
+     <%= paginate @customers %>
+    </div>
+  </div>

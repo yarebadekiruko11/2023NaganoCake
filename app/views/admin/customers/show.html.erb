@@ -2,11 +2,17 @@
    <%= flash[:notice] %>
 </div>
 
-  <h3>登録情報</h3>
+  <h3><%= @customer.last_name + @customer.first_name %>さんの会員詳細</h3>
 
 
   <table class="table table-bordered mt-3">
     <tbody>
+      <tr>
+       <th style="width:30%">会員ID</th>
+       <td>
+         <%= @customer.id %>
+       </td>
+      </tr>
       <tr>
        <th style="width:30%">氏名</th>
        <td>
@@ -46,7 +52,7 @@
        </td>
       </tr>
       <tr>
-       <th style="width:30%">ステータス</th>
+       <th style="width:30%">会員ステータス</th>
        <td>
          <%= @customer.is_deleted %>
        </td>
