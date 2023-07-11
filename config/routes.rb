@@ -34,11 +34,10 @@ Rails.application.routes.draw do
     patch 'customers/withdraw'
 
     # カート
-    get 'cart_items/index'
-    get 'cart_items/update'
-    get 'cart_items/destroy'
+    resources :cart_items, only:[:index, :update, :destroy, :create]
+
     get 'cart_items/destroy_all'
-    get 'cart_items/create'
+
 
     # 注文関係
     get 'orders/new'
@@ -59,10 +58,7 @@ Rails.application.routes.draw do
     resources :items, except: [:destroy]
 
     # 会員情報
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
+    resources :customers, only: [:index, :show, :edit, :update]
 
     # 注文関係
     get 'orders/index'

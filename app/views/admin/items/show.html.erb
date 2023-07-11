@@ -10,7 +10,11 @@
 
 
  <div class="col-5 me-2">
-  <%= image_tag @item.image, size: "300x200" %>
+  <% if @item.image.present? %>
+   <%= image_tag @item.image, size: "300x200" %>
+  <% else %>
+   <%= image_tag "no_image.jpg" %>
+  <% end %>
  </div>
  <div class="col-7">
 

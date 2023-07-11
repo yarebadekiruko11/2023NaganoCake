@@ -1,2 +1,57 @@
-<h1>Admin::Customers#show</h1>
-<p>Find me in app/views/admin/customers/show.html.erb</p>
+<div>
+   <%= flash[:notice] %>
+</div>
+
+  <h3>登録情報</h3>
+
+
+  <table class="table table-bordered mt-3">
+    <tbody>
+      <tr>
+       <th style="width:30%">氏名</th>
+       <td>
+         <%= @customer.last_name %>
+         <%= @customer.first_name %>
+       </td>
+      </tr>
+      <tr>
+       <th style="width:30%">カナ</th>
+       <td>
+         <%= @customer.last_name_kana %>
+         <%= @customer.first_name_kana %>
+       </td>
+      </tr>
+      <tr>
+       <th style="width:30%">郵便番号</th>
+       <td>
+         <%= @customer.postal_code %>
+       </td>
+      </tr>
+      <tr>
+       <th style="width:30%">住所</th>
+       <td>
+         <%= @customer.address %>
+       </td>
+      </tr>
+      <tr>
+       <th style="width:30%">電話番号</th>
+       <td>
+         <%= @customer.telephone_number %>
+       </td>
+      </tr>
+      <tr>
+       <th style="width:30%">メールアドレス</th>
+       <td>
+         <%= @customer.email %>
+       </td>
+      </tr>
+      <tr>
+       <th style="width:30%">ステータス</th>
+       <td>
+         <%= @customer.is_deleted %>
+       </td>
+      </tr>
+    </tbody>
+
+  </table>
+  　 <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: "btn btn-success px-5" %>
