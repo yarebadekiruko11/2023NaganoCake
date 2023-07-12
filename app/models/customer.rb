@@ -1,4 +1,8 @@
 class Customer < ApplicationRecord
+    # アソシエーション
+  has_many :cart_items, dependent: :destroy
+  has_many :order, dependent: :destroy
+
 
   def active_for_authentication?
     super && (is_deleted == false)

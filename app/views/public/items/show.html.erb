@@ -50,6 +50,7 @@
   </div>
   <div class="row">
     <p>
+     <%= if%>
      <%= form_with model: @cart_item, url: cart_items_path, method: :post do |f| %>
      <%= f.hidden_field :item_id, :value => @item.id %>
      <%= f.select :amount, *[1..20] %>
