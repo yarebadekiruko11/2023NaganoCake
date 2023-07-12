@@ -1,2 +1,37 @@
-<h1>Public::CartItems#index</h1>
-<p>Find me in app/views/public/cart_items/index.html.erb</p>
+<div class="row align-items-center">
+
+ <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col-4">商品名</th>
+      <th scope="col-2">単価(税込)</th>
+      <th scope="col-2">数量</th>
+      <th scope="col-2">小計</th>
+      <th scope="col-2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cart_items.each do |cart_item| %>
+    <tr>
+      <td><%= image_tag cart_item.item.get_image, size: "50x75" %>
+      <%= cart_item.item.name %></td>
+      <td><%= cart_item.item.with_tax_price %></td>
+      <td><%= cart_item.amount %></td>
+      <td><%= cart_item.subtotal %></td>
+      <% @total += cart_item.subtotal %>
+      <td>削除ボタン</td>
+    </tr>
+    <% end %>
+  </tbody>
+ </table>
+</div>
+
+
+
+
+
+
+
+
+
+

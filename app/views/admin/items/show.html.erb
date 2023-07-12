@@ -41,7 +41,7 @@
      <p>税抜価格</p>
     </div>
     <div class="col-6">
-     <%= @item.price %>円
+     <%= "#{@item.price.to_s(:delimited)}円" %>
     </div>
   </div>
 
