@@ -8,6 +8,12 @@ class CartItem < ApplicationRecord
 
  def subtotal
    item.with_tax_price * amount
+  # item.number_to_currency * amount
  end
+
+ def subtotal_k
+   "#{subtotal.to_s(:delimited)}"
+ end
+
 
 end

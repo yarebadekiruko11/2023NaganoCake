@@ -35,8 +35,7 @@ Rails.application.routes.draw do
 
     # カート
     resources :cart_items, only:[:index, :update, :destroy, :create]
-
-    get 'cart_items/destroy_all'
+    delete 'cart_items' => 'cart_items#destroy_all', as: 'destroy_all_cart_items'
 
 
     # 注文関係

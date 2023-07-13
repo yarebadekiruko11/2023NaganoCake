@@ -45,7 +45,7 @@
   <br>
   <div class="row">
     <h5>
-     <%= (@item.price * 1.1).floor %>(税込)
+     ¥<%= @item.number_to_currency %>(税込)
     </h5>
   </div>
   <div class="row">

@@ -10,21 +10,19 @@ class Item < ApplicationRecord
    unless image.attached?
      file_path = Rails.root.join('app/assets/images/no_image.jpg')
      image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
-    end
+   end
     image
   end
-
-  # カンマ区切り
-  # def number_to_currency(price)
-    # "#{price.to_s(:delimited)}円"
-  # end
 
   # 消費税を求めるメソッド
   def with_tax_price
     (price * 1.1).floor
   end
 
-
+  # カンマ区切り
+  def number_to_currency
+    "#{with_tax_price.to_s(:delimited)}"
+  end
 
 
 
