@@ -10,6 +10,11 @@ class Public::CartItemsController < ApplicationController
   end
 
   def update
+    customer = current_customer
+    cart_item = customer.cart_item
+
+    cart_item.update(cart_item_params)
+    redirect_to cart_items_path
   end
 
   def destroy
@@ -27,8 +32,12 @@ class Public::CartItemsController < ApplicationController
 
 
   def create
+    # if CartItem.find_by(item_id: @item_id)
+      # @item.amount.to_i + item.amount.to_i
+
     @cart_item = CartItem.new(cart_item_params)
     @cart_item.customer_id = current_customer.id
+
     if @cart_item.save
      redirect_to cart_items_path
     else
