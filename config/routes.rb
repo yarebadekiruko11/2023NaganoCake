@@ -39,12 +39,11 @@ Rails.application.routes.draw do
 
 
     # 注文関係
-    get 'orders/new'
+    resources :orders, only:[:new, :create, :index, :show]
+
     get 'orders/comfirm'
     get 'orders/complete'
-    get 'orders/create'
-    get 'orders' => "orders#index"
-    get 'orders/show'
+
   end
 
 # 管理者用

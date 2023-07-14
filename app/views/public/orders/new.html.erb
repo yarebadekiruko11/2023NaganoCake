@@ -6,4 +6,9 @@
 
 <div class="row">
   <span>支払い方法</span>
-  
+  <div class="col-auto">
+  <%= form_with model:@order, url: orders_path(@order.id), method: :patch do |f| %>
+  <%= Order.payment_methods_i18n %>
+  <% end %>
+  </div>
+</div>
