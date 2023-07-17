@@ -5,14 +5,11 @@ class Public::CartItemsController < ApplicationController
   def index
     @customer = current_customer
     @cart_items = @customer.cart_items
-    @total = @cart_items.inject(0) { |sum, cart_item| sum + cart_item.subtotal }
-
+    @total = 0
   end
 
   def update
-    customer = current_customer
-    cart_item = customer.cart_item
-
+    cart_item = CartItem.find(params[:id])
     cart_item.update(cart_item_params)
     redirect_to cart_items_path
   end

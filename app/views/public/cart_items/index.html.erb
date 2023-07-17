@@ -23,20 +23,21 @@
     </tr>
   </thead>
   <tbody>
-    <% @cart_items.each do |cart_item| %>
+<% @cart_items.each do |cart_item| %>
+
     <tr>
       <td><%= image_tag cart_item.item.get_image, size: "50x75" %>
       <%= cart_item.item.name %></td>
       <td class="align-middle"><%= cart_item.item.number_to_currency %></td>
       <td class="align-middle">
-        <%#= form_with model: @cart_item, url: cart_items_path, method: :patch do |f| %>
-        <%#= f.select :cart_item_amount, *[1..20] %>
-        <%= cart_item.amount %>
-        <%#= f.submit '変更', class: 'btn btn-success' %>
-        <%# end %>
+        <%= form_with model: cart_item, method: :patch do |f| %>
+        <%= f.select :amount, *[1..20] %>
+
+        <%= f.submit '変更', class: 'btn btn-success' %>
+        <% end %>
       </td>
       <td class="align-middle"><%= cart_item.subtotal_k %></td>
-      <%# @total += cart_item.subtotal %>
+      <% @total += cart_item.subtotal %>
       <td class="align-middle"><%= link_to '削除する', cart_item_path(cart_item), method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-danger' %></td>
     </tr>
     <% end %>
