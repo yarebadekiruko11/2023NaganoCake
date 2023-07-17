@@ -5,10 +5,23 @@
   </div>
 
 <div class="row">
-  <span>支払い方法</span>
-  <div class="col-auto">
-  <%= form_with model:@order, url: orders_path(@order.id), method: :patch do |f| %>
-  <%= Order.payment_methods_i18n %>
-  <% end %>
-  </div>
+  <h5>支払い方法</h5>
 </div>
+  <div class="col-auto">
+     <%= form_with model:@order, method: :patch do |f| %>
+      <%= f.radio_button :payment_methods, :credit_card %>
+      <%= f.label :payment_methods, "クレジットカード", {value: :credit_card} %>
+      <br>
+      <%= f.radio_button :payment_methods, :transfer %>
+      <%= f.label :payment_methods_i18n, "銀行振込", {value: :transfer} %>
+     <% end %>
+  </div>
+<h5>お届け先</h5>
+<div class="row">
+  <p>
+  <%= current_customer.address %>
+  </p>
+
+</div>
+
+

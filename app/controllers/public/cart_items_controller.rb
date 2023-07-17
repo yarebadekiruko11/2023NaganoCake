@@ -29,8 +29,8 @@ class Public::CartItemsController < ApplicationController
 
 
   def create
-    # if CartItem.find_by(item_id: @item_id)
-      # @item.amount.to_i + item.amount.to_i
+    if CartItem.find_by(item_id: @item_id)
+      @item.amount.to_i + item.amount.to_i
 
     @cart_item = CartItem.new(cart_item_params)
     @cart_item.customer_id = current_customer.id
@@ -42,11 +42,14 @@ class Public::CartItemsController < ApplicationController
      redirect_to customer_session_path
     end
 
+    end
   end
 
   private
+
   def cart_item_params
       params.require(:cart_item).permit(:item_id, :amount)
   end
+
 
 end
