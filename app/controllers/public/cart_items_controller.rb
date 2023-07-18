@@ -29,20 +29,25 @@ class Public::CartItemsController < ApplicationController
 
 
   def create
-    if CartItem.find_by(item_id: @item_id)
-      @item.amount.to_i + item.amount.to_i
+    # cart内にすでに存在する商品かを確認
+    cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
 
-    @cart_item = CartItem.new(cart_item_params)
-    @cart_item.customer_id = current_customer.id
-
-    if @cart_item.save
-     redirect_to cart_items_path
+    # あったらすでにあるものに追加
+    if cart_item.present?
+      cart_item.amount += params[:cart_item][:amount].to_i
+    # なかったら新規作成する
     else
-     flash[:notice] = "ログインしてください"
-     redirect_to customer_session_path
+      cart_item = CartItem.new(cart_item_params)
+      cart_item.customer_id = current_customer.id
+
+      # current_customer.cart_items.new(cart_item_params)
     end
 
-    end
+    # 保存
+    cart_item.save
+
+    # cart画面にリダイレクトする
+    redirect_to cart_items_path
   end
 
   private

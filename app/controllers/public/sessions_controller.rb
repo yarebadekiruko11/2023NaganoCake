@@ -34,6 +34,27 @@ class Public::SessionsController < Devise::SessionsController
 
    protected
 
+     # 退会しているか判断
+ def customer_state
+  # 入力されたメールからアカウントを１件取得
+  @customer = Customer.find_by(email: params[:customer][:email])
+  #アカウント取得できず。終了
+   return if !@customer
+
+  #取得アカウントのパスワードと入力されたパスワードが一致しているかどうか
+    if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == true)
+    #処理分岐
+    flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
+    redirect_to new_customer_registration
+    else
+    flash[:notice] = "項目を入力してください"
+    end
+ end
+
+
+
+
+
     def configure_permitted_parameters
      devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number])
     end
@@ -42,22 +63,7 @@ class Public::SessionsController < Devise::SessionsController
 
 
 
-  # 退会しているか判断
- def cutomer_state
-  # 入力されたメールからアカウントを１件取得
-  @customer = Customer.find_by(email: params[:customer][:email])
-  #アカウント取得できず。終了
-   return if !@customer
 
-  #取得アカウントのパスワードと入力されたパスワードが一致しているかどうか
-    if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == false)
-    #処理分岐
-    flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
-    redirect_to new_customer_registration
-    else
-    flash[:notice] = "項目を入力してください"
-    end
- end
 
 
 
