@@ -1,0 +1,50 @@
+<div class="row">
+  注文情報確認
+</div>
+<div class="row">
+  <div class="col-7">
+   <table class="table">
+    <!--情報テーブル-->
+    <thead>
+     <tr>
+      <th scope="col">商品名</th>
+      <th scope="col">単価（税込）</th>
+      <th scope="col">数量</th>
+      <th scope="col">小計</th>
+     </tr>
+    </thead>
+    <tbody>
+       <% @cart_items.each do |cart_item| %>
+      <tr>
+        <td><%= image_tag cart_item.item.get_image, size: "50x75" %>
+            <%= cart_item.item.name %></td>
+        <td class="align-middle"><%= cart_item.item.number_to_currency %></td>
+        <td class="align-middle"><%= cart_item.amount %></td>
+        <td class="align-middle"><%= cart_item.subtotal_k %></td>
+         <% @total += cart_item.subtotal %>
+       <% end %>
+      </tr>
+    </tbody>
+   </table>
+  </div>
+
+  <div class="col-4">
+   <table class="table">
+      <!--送料など-->
+    <tbody>
+     <tr>
+      <td>送料</td>
+      <td><%= @shipping_cost.to_s %></td>
+     </tr>
+     <tr>
+      <td>商品合計</td>
+      <td><%= @total.round.to_s(:delimited) %>円</td>
+     </tr>
+     <tr>
+      <td>請求金額</td>
+      <td><%= (@total.round + 800).to_s(:delimited)%>円</td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+</div>

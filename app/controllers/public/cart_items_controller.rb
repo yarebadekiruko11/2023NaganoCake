@@ -29,6 +29,7 @@ class Public::CartItemsController < ApplicationController
 
 
   def create
+
     # cart内にすでに存在する商品かを確認
     cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
 
@@ -48,6 +49,7 @@ class Public::CartItemsController < ApplicationController
 
     # cart画面にリダイレクトする
     redirect_to cart_items_path
+
   end
 
   private
