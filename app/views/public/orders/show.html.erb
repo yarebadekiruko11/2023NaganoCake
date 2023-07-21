@@ -1,2 +1,80 @@
-<h1>Public::Orders#show</h1>
-<p>Find me in app/views/public/orders/show.html.erb</p>
+<h1 class="my-3">注文履歴詳細</h1>
+
+
+<div class="row">
+  <div class="col-7">
+    <h5>注文情報</h5>
+    <table class="table">
+     <!--合計金額テーブル-->
+    <tbody>
+     <tr>
+      <td>注文日</td>
+      <td><%#= order.order.create_at.to_s(:datetime_jp) %></td>
+     </tr>
+     <tr>
+      <td>配送先</td>
+      <td><%#= order.address %>
+          <%#= order.name %>
+      </td>
+     </tr>
+     <tr>
+      <td>支払方法</td>
+      <td><%= order.payment_method %>
+      </td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+  <div class="col-5">
+    <h5>請求情報</h5>
+    <table class="table">
+     <!--合計金額テーブル-->
+    <tbody>
+     <tr>
+      <td>商品合計</td>
+      <td><%= @total.round.to_s(:delimited) %>円</td>
+     </tr>
+     <tr>
+      <td>送料</td>
+      <td><%= @shipping_cost.to_s %>
+      <%= f.hidden_field :shipping_cost, :value => @shipping_cost %>
+      </td>
+     </tr>
+     <tr>
+      <td>請求金額</td>
+      <td><%= (@total.round + 800).to_s(:delimited)%>円
+      <%= f.hidden_field :total_payment, :value => (@total.round + 800).to_s(:delimited) %>
+      </td>
+     </tr>
+    </tbody>
+   </table>
+
+  </div>
+</div>
+
+
+
+<h5>注文内容</h5>
+<table class="table">
+
+  <%= order.order_details.each do |order_detail| %>
+  <thead>
+    <tr>
+      <th scope="col">商品</th>
+      <th scope="col">単価（税込）</th>
+      <th scope="col">個数</th>
+      <th scope="col">小計</th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= order_detail.items.name %></td>
+      <td><%= order_detail.items.price %></td>
+      <td><%= order_detail.amount %></td>
+      <td><%= order_detail.subtotal_k %></td>
+    </tr>
+
+  </tbody>
+  <% end %>
+</table>
