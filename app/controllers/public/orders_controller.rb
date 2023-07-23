@@ -4,9 +4,12 @@ class Public::OrdersController < ApplicationController
 
   # 支払い方法選択、宛先確認画面
   def new
-    
-    @order = Order.new
-    
+    cart_items = current_customer.cart_items
+    if cart_items.present?
+     @order = Order.new
+    else
+     redirect_to cart_items_path
+    end
   end
 
 # 　注文商品情報等確認画面
