@@ -3,7 +3,7 @@
 
 
 <table class="table">
-  <%#= @orders.each do |order| %>
+
   <thead>
     <tr>
       <th scope="col">注文日</th>
@@ -14,22 +14,26 @@
     </tr>
   </thead>
   <tbody>
+     <% @orders.each do |order| %>
+
     <tr>
-      <td><%#= order.order.create_at.to_s(:datetime_jp) %></td>
-      <td><%#= order.address %>
-          <%#= order.name %>
+      <td><%= order.created_at.to_s(:date_jp) %></td>
+      <td><%= order.address %>
+          <%= order.name %>
       </td>
-      <td><%# order.order_details.each do |order_details| %>
-          <%#= order_details.items.name %>
+      <td><% order.order_details.each do |order_detail| %>
+          <%= order_detail.item.name %>
+          <br>
+          <% end %>
       </td>
-          <%# end %>
-      <td><%#= order.total_payment%></td>
-      <td><%#= link_to orders_show_path %></td>
+
+      <td class="d-flex justify-content-end"><%= order.total_payment.to_s(:delimited) %>円</td>
+      <td><%= link_to "詳細へ", order_path(order.id) %></td>
 
     </tr>
-
+<% end %>
   </tbody>
-  <%# end %>
+
 </table>
 
 

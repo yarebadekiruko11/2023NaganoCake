@@ -9,17 +9,17 @@
     <tbody>
      <tr>
       <td>注文日</td>
-      <td><%#= order.order.create_at.to_s(:datetime_jp) %></td>
+      <td><%= @order.created_at.to_s(:datetime_jp) %></td>
      </tr>
      <tr>
       <td>配送先</td>
-      <td><%#= order.address %>
-          <%#= order.name %>
+      <td><%= @order.address %>
+          <%= @order.name %>
       </td>
      </tr>
      <tr>
       <td>支払方法</td>
-      <td><%= order.payment_method %>
+      <td><%= @order.payment_method_i18n %>
       </td>
      </tr>
     </tbody>
@@ -32,18 +32,18 @@
     <tbody>
      <tr>
       <td>商品合計</td>
-      <td><%= @total.round.to_s(:delimited) %>円</td>
+      <td><%= @total.to_s(:delimited) %>円</td>
      </tr>
      <tr>
       <td>送料</td>
-      <td><%= @shipping_cost.to_s %>
-      <%= f.hidden_field :shipping_cost, :value => @shipping_cost %>
+      <td><%= @order.shipping_cost.to_s %>円
+
       </td>
      </tr>
      <tr>
       <td>請求金額</td>
-      <td><%= (@total.round + 800).to_s(:delimited)%>円
-      <%= f.hidden_field :total_payment, :value => (@total.round + 800).to_s(:delimited) %>
+      <td><%= @order.total_payment.to_s(:delimited) %>円
+
       </td>
      </tr>
     </tbody>
@@ -57,7 +57,7 @@
 <h5>注文内容</h5>
 <table class="table">
 
-  <%= order.order_details.each do |order_detail| %>
+
   <thead>
     <tr>
       <th scope="col">商品</th>
@@ -68,13 +68,16 @@
     </tr>
   </thead>
   <tbody>
+  <% @order.order_details.each do |order_detail| %>
     <tr>
-      <td><%= order_detail.items.name %></td>
-      <td><%= order_detail.items.price %></td>
+      <td><%= order_detail.item.name %></td>
+      <td><%= order_detail.item.price %></td>
       <td><%= order_detail.amount %></td>
       <td><%= order_detail.subtotal_k %></td>
-    </tr>
 
-  </tbody>
+
+    </tr>
   <% end %>
+  </tbody>
+
 </table>

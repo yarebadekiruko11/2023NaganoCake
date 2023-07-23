@@ -1,2 +1,42 @@
 <h1>Admin::Orders#index</h1>
 <p>Find me in app/views/admin/orders/index.html.erb</p>
+
+
+  <div class="row">
+    <div class="col-auto mt-5" style="background-color: darkgray;">
+     <h5>注文履歴一覧</h5>
+    </div>
+  </div>
+  <br>
+
+  <table class="table">
+   <thead>
+    <tr>
+      <th scope="col">購入日時</th>
+      <th scope="col">購入者</th>
+      <th scope="col">注文個数</th>
+    </tr>
+   </thead>
+   <tbody>
+     <% @orders.each do |order| %>
+    <tr>
+      <td><%= link_to order.created_at, admin_order_path(order.id) %></td>
+      <td><%= order.customer.name %></td>
+      <td>
+        <% order.order_details.each do |order_detail| %>
+        <% @count += order_detail.amount %>
+        <% end %>
+        <%= @count %>
+        <!--注文個数（カートアイテムの合計値）-->
+      </td>
+    </tr>
+     <% end %>
+
+   </tbody>
+  </table>
+
+<div class="row justify-content-md-center my-5">
+    <div class="col col-md-auto">
+     <%= paginate @orders %>
+    </div>
+  </div>
