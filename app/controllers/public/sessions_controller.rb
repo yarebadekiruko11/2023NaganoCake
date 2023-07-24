@@ -3,9 +3,10 @@
 
 class Public::SessionsController < Devise::SessionsController
 
-  # before_action :customer_state, only: [:create]
+  before_action :customer_state, only: [:create]
 
    before_action :configure_permitted_parameters, if: :devise_controller?
+
 
     def after_sign_in_path_for(resource)
     items_path
@@ -45,7 +46,7 @@ class Public::SessionsController < Devise::SessionsController
     if @customer.valid_password?(params[:customer][:password]) && (@customer.is_deleted == true)
     #処理分岐
     flash[:notice] = "退会済みです。再度ご登録をしてご利用ください。"
-    redirect_to new_customer_registration
+    redirect_to new_customer_registration_path
     else
     flash[:notice] = "項目を入力してください"
     end
