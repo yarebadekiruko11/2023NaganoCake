@@ -27,10 +27,15 @@
   <% @items.each do |item| %>
     <div class="col-3">
       <% if item.image.present? %>
-       <%= image_tag item.image, size: "200x150" %>
+         <%= link_to item_path(item.id) do %>
+          <%= image_tag item.image, size: "200x150" %>
+         <% end %>
       <% else %>
-       <%= image_tag "no_image.jpg", size: "200x150" %>
+         <%= link_to item_path(item.id) do %>
+          <%= image_tag "no_image.jpg", size: "200x150" %>
+         <% end %>
       <% end %>
+
       <br>
       <%= item.name %>
       <br>
