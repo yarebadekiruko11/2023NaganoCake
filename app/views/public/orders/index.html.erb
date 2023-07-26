@@ -1,9 +1,10 @@
-<h1 class="my-3">注文履歴一覧</h1>
-
-
+<div class="row">
+    <div class="col-auto mt-5" style="background-color: darkgray;">
+     <h5>注文履歴一覧</h5>
+    </div>
+</div>
 
 <table class="table">
-
   <thead>
     <tr>
       <th scope="col">注文日</th>
@@ -15,7 +16,6 @@
   </thead>
   <tbody>
      <% @orders.each do |order| %>
-
     <tr>
       <td><%= order.created_at.to_s(:date_jp) %></td>
       <td><%= order.address %>
@@ -26,23 +26,18 @@
           <br>
           <% end %>
       </td>
-
       <td class="d-flex justify-content-end"><%= order.total_payment.to_s(:delimited) %>円</td>
       <td><%= link_to "詳細へ", order_path(order.id) %></td>
-
     </tr>
-<% end %>
-
-
+　　 <% end %>
   </tbody>
-
 </table>
 
 <div class="row justify-content-md-center my-5">
     <div class="col col-md-auto">
      <%= paginate @orders, theme: 'twitter-bootstrap-4' %>
     </div>
-  </div>
+</div>
 
 
 

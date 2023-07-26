@@ -2,14 +2,19 @@
    <%= flash[:notice] %>
  </div>
 
-  <div class="row">
+ <div class="row">
     <div class="col-auto mt-5" style="background-color: darkgray;">
      <h5>マイページ</h5>
     </div>
+ </div>
+<div class="row mt-3">
+  <div class="col-3">
+   <h5>登録情報</h5>
+   </div>
+  <div class="col">
+   <%= link_to "編集する", customers_information_edit_path, class: "btn btn-success px-5" %>
   </div>
-
-  <h3>登録情報</h3>
-  　 <%= link_to "編集する", customers_information_edit_path, class: "btn btn-success px-5" %>
+</div>
 
   <table class="table table-bordered mt-3">
     <tbody>
@@ -54,6 +59,14 @@
     </tbody>
   </table>
 
+<div class="row mt-5">
+  <div class="col-3">
+   <h5>注文履歴</h5>
+   </div>
+  <div class="col">
+   <%= link_to "一覧をみる", orders_path, class: "btn btn-primary px-5" %>
+  </div>
+</div>
 
-    <%= link_to "一覧をみる", orders_path, class: "btn btn-primary px-5" %>
+
 

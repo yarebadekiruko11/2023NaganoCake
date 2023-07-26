@@ -6,6 +6,10 @@ class Item < ApplicationRecord
   # 画像許可
   has_one_attached :image
 
+  validates :name, presence: true
+  validates :introduction, presence: true
+  validates :price, presence: true
+
   def get_image
    unless image.attached?
      file_path = Rails.root.join('app/assets/images/no_image.jpg')

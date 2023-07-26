@@ -2,21 +2,43 @@
    <%= flash[:notice] %>
  </div>
 
- <div class="row justify-content-md-center my-5">
-   <div class="information Image">
-     <div class="clearfix">
-        <img src"..." class="col-md-6 float-md-center" alt="...">
+ <div class="row mt-5">
+   <div class="col-3">
+     <table class="table text-align-center">
+      <thead>
+       <tr>
+        <th scope="col">ジャンル検索</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr>
+        <th scope="row">ケーキ</th>
+       </tr>
+       <tr>
+        <th scope="row">焼き菓子</th>
+       </tr>
+       <tr>
+        <th scope="row">プリン</th>
+       </tr>
+       <tr>
+        <th scope="row">キャンディ</th>
+       </tr>
+      </tbody>
+     </table>
+   </div>
 
-    </div>
-    <div class="col col-md-auto">
+ <div class="col-8">
+
+    <div class="row justify-content-center my-5">
        <p>ようこそ、ながのCAKEへ！<br>
          このサイトは、ケーキ販売のECサイトになります。<br>
          会員でない方も商品の閲覧はできますが、<br>
          購入には会員登録が必要になります。<br>
       </p>
     </div>
-  </div>
- </div>
+
+
+
 
 
  <h4>新着商品</h4>
@@ -28,14 +50,15 @@
     <div class="col-3">
       <% if item.image.present? %>
          <%= link_to item_path(item.id) do %>
-          <%= image_tag item.image, size: "200x150" %>
+          <%= image_tag item.image, size: "150x100" %>
          <% end %>
       <% else %>
          <%= link_to item_path(item.id) do %>
-          <%= image_tag "no_image.jpg", size: "200x150" %>
+          <%= image_tag "no_image.jpg", size: "150x100" %>
          <% end %>
       <% end %>
 
+      <br>
       <br>
       <%= item.name %>
       <br>
@@ -44,9 +67,12 @@
     </div>
      <% end %>
   </div>
+  <br>
 </div>
    <div class="row justify-content-end">
      <div class="col-auto">
        <%= link_to "全ての商品を見る >", items_path %>
      </div>
    </div>
+
+</div>

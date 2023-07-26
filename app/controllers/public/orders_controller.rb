@@ -8,6 +8,7 @@ class Public::OrdersController < ApplicationController
     if cart_items.present?
      @order = Order.new
     else
+      flash[:notice] = "商品がありません"
      redirect_to cart_items_path
     end
   end
@@ -18,9 +19,6 @@ class Public::OrdersController < ApplicationController
     @cart_items = current_customer.cart_items
     @shipping_cost = 800
     @total = 0
-
-
-
   end
 
   def create
@@ -43,12 +41,8 @@ class Public::OrdersController < ApplicationController
     end
   end
 
-
-
   def complete
   end
-
-
 
   def index
     @orders = current_customer.order.all.page(params[:page])
@@ -58,10 +52,6 @@ class Public::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     @order_details = @order.order_details
     @total = @order_details.inject(0) { |sum, order_detail| sum + order_detail.subtotal }
-
-    # @total = 0
-    # @total += order_detail.subtotal
-    # @order_details = @order.order_details.all
   end
 
    private

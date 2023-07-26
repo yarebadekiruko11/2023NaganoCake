@@ -2,6 +2,15 @@
    <%= flash[:notice] %>
  </div>
 
+ <% if @customer.errors.any? %>
+  <%= @customer.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @customer.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
   <div class="row">
     <div class="col-auto mt-5" style="background-color: darkgray;">
      <h5>新規会員登録</h5>

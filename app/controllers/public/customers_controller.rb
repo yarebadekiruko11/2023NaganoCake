@@ -23,6 +23,7 @@ class Public::CustomersController < ApplicationController
 
 
   def unsubscribe
+    # 退会確認画面へ
 
   end
 

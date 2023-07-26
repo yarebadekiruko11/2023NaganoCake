@@ -24,12 +24,9 @@ class Public::CartItemsController < ApplicationController
     cart_items = current_customer.cart_items
     cart_items.destroy_all
     redirect_to cart_items_path
-
   end
 
-
   def create
-
     # cart内にすでに存在する商品かを確認
     cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
 
@@ -40,15 +37,18 @@ class Public::CartItemsController < ApplicationController
     else
       cart_item = CartItem.new(cart_item_params)
       cart_item.customer_id = current_customer.id
-
       # current_customer.cart_items.new(cart_item_params)
     end
 
     # 保存
-    cart_item.save
-
+    if cart_item.save
     # cart画面にリダイレクトする
-    redirect_to cart_items_path
+     redirect_to cart_items_path
+    else
+     @item = cart_item.item
+     @cart_item = CartItem.new
+     render :request.referer
+    end
 
   end
 
