@@ -1,24 +1,31 @@
-# README
+# 課題用アプリ制作　ながのCake
+​
+サイト概要
+## 長野県の洋菓子店の通信販売用ECサイト
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### サイトテーマ
+今までの課題の基本を復習しながら実装していく目的で制作しております。
 
-Things you may want to cover:
+### 実装内容
 
-* Ruby version
+管理者画面では顧客一覧と注文一覧を表示できることで、
+情報情報を把握、整理しやすい設計にしております。
 
-* System dependencies
+顧客（利用者側）画面では、登録なしに取扱商品や価格を知ることができます。
+利用者登録することにより、商品購入が可能となります。
+支払い方法は銀行振込とクレジットカードがご利用可能です。
 
-* Configuration
+購入商品については、一度に複数選択することも可能です。
+購入後は、購入情報についていつでもマイページで確認することができます。
 
-* Database creation
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+​
+## 開発環境
+- OS：Mac of
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
+​
+## 使用素材
+- DMM Webcamp サンプル画像
