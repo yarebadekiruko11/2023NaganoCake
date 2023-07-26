@@ -62,6 +62,7 @@ Rails.application.routes.draw do
 
     # 注文関係
     resources :orders, only: [:show, :index]
+    get 'orders/customer_index/:id' => 'orders#customer_index', as: 'orders_customer'
 
 
 
