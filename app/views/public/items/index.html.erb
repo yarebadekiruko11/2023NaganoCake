@@ -9,7 +9,7 @@
   <div class="row">
 
   <% @items.each do |item| %>
-    <div class="col-3">
+    <div class="col">
       <% if item.image.present? %>
        <%= link_to item_path(item.id) do %>
        <%= image_tag item.image, size: "200x150" %>
@@ -20,13 +20,14 @@
        <% end %>
       <% end %>
       <br>
-      <%= link_to item.name, item_path(item.id) %>
+      <%= item.name %>
       <br>
       ¥<%= item.number_to_currency %>
       <br>
     </div>
      <% end %>
   </div>
+ </div>
 </div>
 
   <div class="row justify-content-md-center my-5">

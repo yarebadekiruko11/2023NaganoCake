@@ -35,7 +35,7 @@ class Admin::ItemsController < ApplicationController
     redirect_to admin_item_path(item.id)
     else
     @item = Item.find(params[:id])
-    flash.now[:notice] = "保存できません"
+    flash.now[:notice] = "項目を埋めてください"
     render :edit
     end
 

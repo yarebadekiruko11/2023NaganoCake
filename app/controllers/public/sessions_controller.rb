@@ -9,7 +9,7 @@ class Public::SessionsController < Devise::SessionsController
 
 
     def after_sign_in_path_for(resource)
-    my_page_path(current_customer)
+    root_path(current_customer)
     end
 
    # before_action :configure_sign_in_params, only: [:create]

@@ -2,8 +2,8 @@
    <%= flash[:notice] %>
  </div>
 
- <div class="row mt-5">
-   <div class="col-3">
+<div class="row mt-5">
+  <div class="col-3">
      <table class="table text-align-center">
       <thead>
        <tr>
@@ -25,9 +25,9 @@
        </tr>
       </tbody>
      </table>
-   </div>
+  </div>
 
- <div class="col-8">
+  <div class="col-8">
 
     <div class="row justify-content-center my-5">
        <p>ようこそ、ながのCAKEへ！<br>
@@ -37,42 +37,37 @@
       </p>
     </div>
 
-
-
-
-
- <h4>新着商品</h4>
+    <h4>新着商品</h4>
  <br>
- <div class="d-flex flex-wrap">
-  <div class="row">
-
-  <% @items.each do |item| %>
-    <div class="col-3">
-      <% if item.image.present? %>
+    <div class="d-flex flex-wrap">
+     <div class="row">
+       <% @items.each do |item| %>
+        <div class="col">
+       <!--画像あり-->
+        <% if item.image.present? %>
          <%= link_to item_path(item.id) do %>
           <%= image_tag item.image, size: "150x100" %>
          <% end %>
-      <% else %>
+      　<% else %>
+      　<!--画像なし-->
          <%= link_to item_path(item.id) do %>
           <%= image_tag "no_image.jpg", size: "150x100" %>
          <% end %>
-      <% end %>
-
-      <br>
+      　<% end %>
       <br>
       <%= item.name %>
       <br>
       ¥<%= (item.price*1.1).floor %>
-      <br>
-    </div>
+       </div>
      <% end %>
-  </div>
+    </div>
   <br>
-</div>
+   </div>
+
    <div class="row justify-content-end">
      <div class="col-auto">
        <%= link_to "全ての商品を見る >", items_path %>
      </div>
    </div>
-
+ </div>
 </div>

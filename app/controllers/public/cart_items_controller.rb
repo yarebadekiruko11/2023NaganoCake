@@ -37,18 +37,12 @@ class Public::CartItemsController < ApplicationController
     else
       cart_item = CartItem.new(cart_item_params)
       cart_item.customer_id = current_customer.id
-      # current_customer.cart_items.new(cart_item_params)
     end
 
     # 保存
-    if cart_item.save
+    cart_item.save
     # cart画面にリダイレクトする
-     redirect_to cart_items_path
-    else
-     @item = cart_item.item
-     @cart_item = CartItem.new
-     render :request.referer
-    end
+    redirect_to cart_items_path
 
   end
 
