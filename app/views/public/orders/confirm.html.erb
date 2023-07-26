@@ -60,6 +60,7 @@
  <div class="col-auto">
   <!--オーダー情報-->
   <%= @order.payment_method_i18n %>
+  <%= f.hidden_field :payment_method, :value => @order.payment_method %>
 
  </div>
 </div>
