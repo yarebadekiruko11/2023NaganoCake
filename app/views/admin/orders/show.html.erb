@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col-auto mt-5" style="background-color: darkgray;">
+     <h5>注文履歴詳細</h5>
+    </div>
+  </div>
+
+    <!--購入情報-->
+    <table class="table mt-3">
+    <tbody>
+      <tr>
+      <td>購入者</td>
+      <td><%= link_to @order.customer.name, admin_customer_path(@order.customer.id) %></td>
+     </tr>
+     <tr>
+
+      <td>注文日</td>
+      <td><%= @order.created_at.to_s(:datetime_jp) %></td>
+     </tr>
+     <tr>
+      <td>配送先</td>
+      <td><%= @order.address %>
+      <br><%= @order_name %>
+
+      </td>
+     </tr>
+     <tr>
+      <td>支払方法</td>
+      <td><%= @order.payment_method_i18n %></td>
+     </tr>
+    </tbody>
+   </table>
+
+<!--注文商品詳細-->
+
+<div class="row mt-3">
+  <div class="col-7">
+   <table class="table">
+    <thead>
+     <tr>
+      <th scope="col">商品</th>
+      <th scope="col">単価（税込）</th>
+      <th scope="col">個数</th>
+      <th scope="col">小計</th>
+     </tr>
+    </thead>
+    <tbody>
+     <% @order.order_details.each do |order_detail| %>
+     <tr>
+      <td><%= order_detail.item.name %></td>
+      <td><%= order_detail.item.number_to_currency %></td>
+      <td><%= order_detail.amount %></td>
+      <td><%= order_detail.subtotal_k %></td>
+     </tr>
+     <% end %>
+    </tbody>
+   </table>
+  </div>
+  <div class="col-3">
+    <table class="table">
+     <!--合計金額テーブル-->
+    <tbody>
+     <tr>
+      <td>商品合計</td>
+      <td class="d-flex justify-content-end"><%= @total.to_s(:delimited) %>円</td>
+     </tr>
+     <tr>
+      <td>送料</td>
+      <td class="d-flex justify-content-end"><%= @order.shipping_cost.to_s(:delimited) %>円</td>
+     </tr>
+     <tr>
+      <td>請求金額合計</td>
+      <td class="d-flex justify-content-end"><%= @order.total_payment.to_s(:delimited) %>円</td>
+     </tr>
+    </tbody>
+   </table>
+  </div>
+ </div>

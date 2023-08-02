@@ -1,0 +1,139 @@
+ <div>
+   <%= flash[:notice] %>
+ </div>
+
+ <% if @customer.errors.any? %>
+  <%= @customer.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @customer.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+  <div class="row">
+    <div class="col-auto mt-5" style="background-color: darkgray;">
+     <h5>新規会員登録</h5>
+    </div>
+  </div>
+
+<%= form_with model: @customer, url: customer_registration_path do |f| %>
+
+
+  <div class="row justify-content-start mt-3">
+   <div class="col-2 ml-4">
+    <p>名前</p>
+   </div>
+   <div class="col-1">
+    <%= f.label "(姓)" %>
+   </div>
+    <div class="col-3">
+    <%= f.text_field :last_name %>
+    </div>
+
+   <div class="col-1">
+    <%= f.label "(名)" %>
+    </div>
+    <div class="col-3">
+    <%= f.text_field :first_name %>
+   </div>
+  </div>
+
+  <div class="row justify-content-start mt-3">
+   <div class="col-2 ml-4">
+    <p>フリガナ</p>
+   </div>
+   <div class="col-1">
+    <%= f.label "(セイ)" %>
+   </div>
+   <div class="col-3">
+    <%= f.text_field :last_name_kana %>
+   </div>
+
+   <div class="col-1">
+    <%= f.label "(メイ)" %>
+   </div>
+   <div class="col-3">
+    <%= f.text_field :first_name_kana %>
+   </div>
+  </div>
+
+  <div class="row justify-content-start mt-3">
+    <div class="col-3 ml-4">
+     <p>メールアドレス</p>
+    </div>
+    <div class="col-6">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
+  </div>
+
+<!--住所など-->
+  <div class="row justify-content-start mt-3">
+   <div class="col-3 ml-4">
+    <p>郵便番号（ハイフンなし）</p>
+   </div>
+   <div class="col-6">
+    <%= f.text_field :postal_code %>
+   </div>
+  </div>
+
+  <div class="row justify-content-start mt-3">
+   <div class="col-3 ml-4">
+    <p>住所</p>
+   </div>
+   <div class="col-6">
+    <%= f.text_area :address, size: "65x1" %>
+   </div>
+  </div>
+
+  <div class="row justify-content-start mt-3">
+   <div class="col-3 ml-4">
+    <p>電話番号</p>
+   </div>
+   <div class="col-6">
+    <%= f.text_field :telephone_number %>
+   </div>
+  </div>
+
+<!--パスワード  -->
+  <div class="row justify-content-start mt-3">
+   <div class="col-3 ml-4">
+    <p>パスワード
+    <% if @minimum_password_length %>
+    (<%= @minimum_password_length %> 文字以上)
+    <% end %>
+    </p>
+    </div>
+    <div class="col-6">
+    <%= f.password_field :password, autocomplete: "new-password" %>
+   </div>
+  </div>
+
+  <div class="row justify-content-start mt-3">
+   <div class="col-3 ml-4">
+    <p>パスワード（確認用）</p>
+   </div>
+   <div class="col-6">
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+   </div>
+  </div>
+
+  <div class="row justify-content-start mt-3">
+   <div class="col-3 ml-4"></div>
+   <div class="d-grid gap-2 col-6">
+    <%= f.submit "新規登録", class: 'btn btn-success px-5' %>
+
+   </div>
+  </div>
+    <% end %>
+
+  <div class="row justify-content-start mt-3">
+   <div class="col-auto" style="background-color: darkgray;">
+    <h5>既に登録済みの方</h5>
+   </div>
+  </div>
+  <div class="row justify-content-start ml-3">
+    <p>
+    <%= link_to "こちら", customer_session_path %>からログインしてください。
+    </p>
+  </div>

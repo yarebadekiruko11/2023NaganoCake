@@ -1,0 +1,73 @@
+ <div>
+   <%= flash[:notice] %>
+ </div>
+
+<div class="row mt-5">
+  <div class="col-3">
+     <table class="table text-align-center">
+      <thead>
+       <tr>
+        <th scope="col">ジャンル検索</th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr>
+        <th scope="row">ケーキ</th>
+       </tr>
+       <tr>
+        <th scope="row">焼き菓子</th>
+       </tr>
+       <tr>
+        <th scope="row">プリン</th>
+       </tr>
+       <tr>
+        <th scope="row">キャンディ</th>
+       </tr>
+      </tbody>
+     </table>
+  </div>
+
+  <div class="col-8">
+
+    <div class="row justify-content-center my-5">
+       <p>ようこそ、ながのCAKEへ！<br>
+         このサイトは、ケーキ販売のECサイトになります。<br>
+         会員でない方も商品の閲覧はできますが、<br>
+         購入には会員登録が必要になります。<br>
+      </p>
+    </div>
+
+    <h4>新着商品</h4>
+ <br>
+    <div class="d-flex flex-wrap">
+     <div class="row">
+       <% @items.each do |item| %>
+        <div class="col">
+       <!--画像あり-->
+        <% if item.image.present? %>
+         <%= link_to item_path(item.id) do %>
+          <%= image_tag item.image, size: "150x100" %>
+         <% end %>
+      　<% else %>
+      　<!--画像なし-->
+         <%= link_to item_path(item.id) do %>
+          <%= image_tag "no_image.jpg", size: "150x100" %>
+         <% end %>
+      　<% end %>
+      <br>
+      <%= item.name %>
+      <br>
+      ¥<%= (item.price*1.1).floor %>
+       </div>
+     <% end %>
+    </div>
+  <br>
+   </div>
+
+   <div class="row justify-content-end">
+     <div class="col-auto">
+       <%= link_to "全ての商品を見る >", items_path %>
+     </div>
+   </div>
+ </div>
+</div>

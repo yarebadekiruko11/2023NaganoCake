@@ -5,12 +5,101 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/bb5a63535a.js" crossorigin="anonymous"></script>
+
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column vh-100">
+
+   <header class="shadow-sm">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container">
+        <a class="navbar-brand p-3" href="/">Logo</a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+         <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav ml-auto">
+            <% if customer_signed_in? %>
+             <p>ようこそ、<%= current_customer.last_name %>さん！</p>
+    <!--会員ログイン後のヘッダー-->
+           <li>
+              <%= link_to "マイページ", my_page_path, class:"btn btn-outline-secondary mr-2" %>
+           </li>
+           <li>
+              <%= link_to "商品一覧", items_path, class:"btn btn-outline-secondary mr-2" %>
+           </li>
+           <li>
+              <%= link_to "カート", cart_items_path, class:"btn btn-outline-secondary mr-2" %>
+           </li>
+           <li>
+             <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class:"btn btn-outline-secondary mr-2"%>
+           </li>
+
+
+        <!--管理者ログイン後-->
+           <% elsif admin_signed_in? %>
+           <li>
+             <%= link_to "商品一覧", admin_items_path, class:"btn btn-outline-secondary mr-2" %>
+           </li>
+           <li>
+            <%= link_to "会員一覧", admin_customers_path, class:"btn btn-outline-secondary mr-2" %>
+           </li>
+            <%= link_to "注文履歴一覧", admin_orders_path, class:"btn btn-outline-secondary mr-2" %>
+           </li>
+           <li>
+             <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"btn btn-outline-secondary mr-2" %>
+           </li>
+
+  <!--ログイン前のヘッダー  -->
+           <% else %>
+           <li>
+              <%= link_to "About", homes_about_path, class: "btn btn-outline-secondary mr-2"%>
+           </li>
+           <li class="nav-list-item">
+              <%= link_to "商品一覧", items_path, class:"btn btn-outline-secondary mr-2" %>
+           </li>
+           <li class="nav-list-item">
+              <%= link_to "新規登録", new_customer_registration_path, class:"btn btn-outline-secondary mr-2" %>
+           </li>
+           <li class="nav-list-item">
+              <%= link_to "ログイン", customer_session_path, class:"btn btn-outline-secondary mr-2" %>
+           </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+     </nav>
+   </header>
+
+   <div class="container">
+
     <%= yield %>
-  </body>
+
+
+   </div>
+
+  <footer class="fixed-bottom bg-light text white py-3 pr-4">
+
+      <div class="row justify-content-end">
+        <div class="col-2">
+          <%= link_to "管理者用", admin_session_path %>
+
+        </div>
+
+      </div>
+
+
+
+  </footer>
+
+</body>
+
 </html>

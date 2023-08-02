@@ -1,0 +1,67 @@
+<div>
+   <%= flash[:notice] %>
+</div>
+
+<div class="row justify-content-center">
+  <h2>
+    <div class="col-auto align-self-center my-5">
+      ショッピングカート
+    </div>
+  </h2>
+</div>
+<div class="row justify-content-end">
+  <div class="col-auto align-self-center">
+      <%= link_to 'カートを空にする', destroy_all_cart_items_path, method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-danger' %>
+  </div>
+</div>
+
+<div class="row align-items-center mt-5">
+ <table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col-auto">商品名</th>
+      <th scope="col-auto">単価(税込)</th>
+      <th scope="col-auto">数量</th>
+      <th scope="col-auto">小計</th>
+      <th scope="col-auto"></th>
+    </tr>
+  </thead>
+  <tbody>
+<% @cart_items.each do |cart_item| %>
+
+    <tr>
+      <td><%= image_tag cart_item.item.get_image, size: "50x75" %>
+      <%= cart_item.item.name %></td>
+      <td class="align-middle"><%= cart_item.item.number_to_currency %></td>
+      <td class="align-middle">
+        <%= form_with model: cart_item, method: :patch do |f| %>
+        <%= f.select :amount, *[1..20] %>
+
+        <%= f.submit '変更', class: 'btn btn-success' %>
+        <% end %>
+      </td>
+      <td class="align-middle"><%= cart_item.subtotal_k %></td>
+      <% @total += cart_item.subtotal %>
+      <td class="align-middle"><%= link_to '削除する', cart_item_path(cart_item), method: :delete, "data-confirm" => "本当に削除しますか？", class: 'btn btn-danger' %></td>
+    </tr>
+    <% end %>
+  </tbody>
+ </table>
+ </div>
+
+ <div class="row justify-content-between">
+    <div class="col-auto">
+      <%= link_to "買い物を続ける", root_path, class: "btn btn-primary px-5" %>
+    </div>
+    <div class="col-auto">
+      <p>合計金額
+      <%= @total.round.to_s(:delimited) %>円
+      </p>
+    </div>
+ </div>
+
+ <div class="row justify-content-center">
+    <div class="col-auto align-self-center my-5">
+      <%= link_to "注文情報入力に進む", new_order_path, class: "btn btn-success px-5" %>
+    </div>
+</div>
